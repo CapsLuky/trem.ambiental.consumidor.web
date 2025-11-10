@@ -1,0 +1,29 @@
+<ul
+  nz-menu
+  [nzTheme]="'light'"
+  [nzMode]="'inline'"
+  [nzInlineCollapsed]="false"
+>
+  <ng-container *ngFor="let link of links">
+    <li *ngIf="link.visualizar" nz-submenu [nzOpen]="'true'" class="titulo">
+      <span title>
+        <span class="nav-text">{{ link.label }}</span>
+      </span>
+
+      <ul *ngFor="let subMenu of link.subMenu">
+        <li
+          *ngIf="subMenu.visualizar"
+          nz-menu-item
+          [nzDisabled]="subMenu.inativo"
+          [nzMatchRouter]="true"
+        >
+          {{ subMenu.label }}
+          <a
+            [routerLink]="[subMenu.url]"
+            (click)="onLinkClicado()"
+          ></a>
+        </li>
+      </ul>
+    </li>
+  </ng-container>
+</ul>

@@ -1,0 +1,10 @@
+<nz-card [nzBodyStyle]="{'padding': '15px 15px 15px 15px'}">
+  <div class="corpo">
+    <span>
+      Saldo de Pontos:
+    </span>
+    <span>
+      <nz-spin [nzSpinning]="onPontosLoad" [nzDelay]="150"> <strong>{{ pontos }}</strong></nz-spin>
+    </span>
+  </div>
+</nz-card>

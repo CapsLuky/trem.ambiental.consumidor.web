@@ -1,0 +1,54 @@
+<section>
+  <article>
+    <component-card-saldo></component-card-saldo>
+  </article>
+
+  <article>
+    <ng-container *ngFor="let item of produtoList">
+
+          <nz-card
+            [nzActions]="[botao]"
+            [nzLoading]="false"
+            [nzBorderless]="false"
+            [nzHoverable]="false"
+            [nzBodyStyle]="{'padding': '5px 15px 5px 15px'}"
+          >
+            <div>
+                <img
+                  nz-image
+                  [nzSrc]="item.imagem"
+                  [nzPlaceholder]="placeholder"
+                  [nzFallback]="fallback"
+                />
+              <aside>
+
+                <h5 nz-typography>{{item.nome}}</h5>
+                <span>{{item.descricao}}</span>
+
+                <div class="rodape">
+                  <div><strong>{{item.valorPontos}}</strong> &nbsp; pontos</div>
+                  <div>{{item.quantidadeEstoque}} em estoque</div>
+                </div>
+              </aside>
+            </div>
+          </nz-card>
+          <ng-template #botao>
+            <button
+              style="width: 90%"
+              nz-button
+              nzType="primary"
+              (click)="onBtnPedir(item.id)"
+              [disabled]="item.quantidadeEstoque <= 0"
+            >
+              <span>Pedir</span>
+            </button>
+          </ng-template>
+
+    </ng-container>
+
+  </article>
+
+
+
+</section>
+

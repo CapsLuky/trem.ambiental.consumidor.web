@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./app/common/scss/cores";
+@import "./app/common/scss/tipografia.scss";
+
+body, html {
+  height: 100%;
+  overflow: hidden;
+}

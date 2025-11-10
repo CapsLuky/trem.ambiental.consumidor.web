@@ -1,0 +1,19 @@
+@import "cores.scss";
+
+section {
+  display: flex;
+  flex-direction: column;
+
+  article {
+    div {
+      display: flex;
+      align-items: center;
+      height: 60px;
+      background-color: #fff;
+      span {
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+    }
+  }
+}

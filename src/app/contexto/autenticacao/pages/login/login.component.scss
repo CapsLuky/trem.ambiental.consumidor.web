@@ -1,0 +1,49 @@
+@import "cores.scss";
+
+.main {
+  background-color: #FFFFFF;
+  max-width: 400px;
+  height: 400px;
+  margin: 7em auto;
+  border-radius: 5px;
+  border-width: 1px;
+  border-color: $cinzaSecundario;
+  border-style: solid;
+
+  figure {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  // header {
+  //   padding-bottom: 15px;
+  //   color: $cinzaSecundario;
+  //   font-weight: bold;
+  //   font-size: 17px;
+  // }
+
+  form {
+    margin: 15px;
+
+    span{
+      color: $erro;
+      margin: 15px;
+      font-size: 17px;
+    }
+
+    a{
+      margin-bottom: 7px;;
+    }
+
+    a:nth-child(2) {
+      float: right;
+    }
+
+    button {
+      margin-bottom: 10px;
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+nz-card {
+  max-width: 450px;
+  min-width: 350px;
+
+  .mes-atual {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,40 @@
+<div class="main">
+
+  <header align="center">Recuperar senha</header>
+
+  <form #recuperarSenhaForm="ngForm" nz-form [nzLayout]="'vertical'">
+
+    <nz-form-item>
+      <nz-form-label>Informe seu e-mail de cadastrado</nz-form-label>
+      <nz-form-control nzErrorTip="Entre com seu e-mail" nzHasFeedback>
+        <nz-input-group nzPrefixIcon="mail">
+          <input type="text"
+                 id="login-inputTextNome"
+                 nz-input
+                 required
+                 name="email"
+                 email
+                 placeholder="exemplo@email.com"
+                 [(ngModel)]="usuario.email" />
+          </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item [ngClass]="{'erro': mensagemAlertaErro, 'sucesso': mensagemAlertaErro === false}" >
+      {{mensagemAlerta}}
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzSize="large"
+        [nzType]="'primary'"
+        [disabled]="recuperarSenhaFormInvalido && recuperarSenhaForm.invalid"
+        [nzLoading]="processando"
+        (click)="onSolicitarResetSenha(recuperarSenhaForm)">Recuperar</button>
+        <a class="login-form-forgot" (click)="onVoltarParaLogin()">Voltar para o login</a>
+      </nz-form-control>
+    </nz-form-item>
+
+  </form>
+
+</div>

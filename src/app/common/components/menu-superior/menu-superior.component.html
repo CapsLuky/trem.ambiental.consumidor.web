@@ -1,0 +1,29 @@
+<section>
+
+  <aside>
+    <img (click)="onAbrirFecharMenu()"
+         src="../../../../assets/img/hamburger-menu-icon.png"
+         alt=""
+         style="width: 26px;">
+
+    <h1>Olá {{ usuarioLogado }}</h1>
+  </aside>
+
+  <div>
+    <a nz-dropdown [nzDropdownMenu]="menu">
+      Menu
+      <i nz-icon nzType="down"></i>
+    </a>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item (click)="onTrocarSenha()">Trocar senha</li>
+      </ul>
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item (click)="onNavegarDadosPessoais()">Meus dados</li>
+      </ul>
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item (click)="onSair()">Sair</li>
+      </ul>
+    </nz-dropdown-menu>
+  </div>
+</section>

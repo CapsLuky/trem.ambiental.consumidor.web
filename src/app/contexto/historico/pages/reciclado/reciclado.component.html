@@ -1,0 +1,41 @@
+<section>
+  <article>
+    <div>
+      <span>Total do peso no período: {{peso}}</span>
+    </div>
+    <div>
+      <span>Período De: </span>
+      <nz-date-picker [(ngModel)]="dataInicio" [nzAllowClear]="'false'" [nzFormat]="'dd/MM/YYYY'" (ngModelChange)="filtrarHistoricoPesagem()"></nz-date-picker>
+      <span>Até:</span>
+      <nz-date-picker [(ngModel)]="dataFim" [nzAllowClear]="'false'" [nzFormat]="'dd/MM/YYYY'" (ngModelChange)="filtrarHistoricoPesagem()"></nz-date-picker>
+    </div>
+  </article>
+
+  <article>
+    <nz-table #TabelaPesagem
+              nzBordered
+              [nzData]="pesagemHistoricoLista"
+              nzTableLayout="fixed"
+              [nzLoading]="tabelaLoad"
+              [nzLoadingDelay]="200"
+              [nzScroll]="{ x: 'scroll', y: 'null' }"
+              nzTitle="Itens reciclados">
+      <thead>
+        <tr>
+          <th nzWidth="100px">Reciclavel</th>
+          <th nzWidth="100px">Peso</th>
+          <th nzWidth="100px">Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of TabelaPesagem.data">
+          <ng-container>
+            <td>{{ data.reciclavel }}</td>
+            <td>{{ data.peso }}</td>
+            <td>{{ data.dataLancamento | date:"dd/MM/yyyy" }}</td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </nz-table>
+  </article>
+</section>

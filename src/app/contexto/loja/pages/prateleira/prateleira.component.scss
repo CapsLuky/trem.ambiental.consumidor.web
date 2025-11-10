@@ -1,0 +1,33 @@
+section {
+  article:nth-child(1) {
+
+  }
+  article:nth-child(2) {
+    display: flex; flex-wrap: wrap;
+    margin-bottom: 55px;
+    nz-card {
+      margin: 15px 15px 0px 0px;
+      height: 186; width: 450px;
+      div {
+        display: flex;
+        img {
+          margin-right: 20px;
+          width: 160px;
+          height: 200px;
+        }
+        aside {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 100%;
+          padding: 10px;
+        }
+        .rodape {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+        }
+      }
+    }
+  }
+}

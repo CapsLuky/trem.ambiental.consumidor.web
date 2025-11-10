@@ -1,0 +1,155 @@
+//@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+@import 'cores.scss';
+
+
+body {
+  height: 100%;
+  overflow: hidden;
+  font-family: "Open Sans", sans-serif !important;
+}
+
+@mixin font-variaveis-comum {
+  color: $cinzaPrimario;
+  font-style: normal;
+  font-variant: normal;
+}
+
+h1 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: $cinzaPrimario;
+}
+
+h2 {
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 15px;
+  margin-top: 5px;
+  color: $cinzaSecundario;
+}
+
+h3 {
+  color: $cinzaSecundario;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 14px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+p {
+  @include font-variaveis-comum;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+label,
+.label {
+  @include font-variaveis-comum;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+blockquote {
+  @include font-variaveis-comum;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+pre {
+  @include font-variaveis-comum;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18.5714px;
+}
+
+// CABEÇALHO
+// Contexto e pagina individual
+
+article{
+  header {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    margin-top: 7px;
+    margin-right: 2px;
+    margin-left: 2px;
+    padding-left: 12px;
+    padding-right: 12px;
+
+    div {
+      margin-right: 12px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+  }
+}
+// -----------------------------------------------
+
+// FORMATAÇÃO PARA TAG FORM
+
+// @mixin flexParaForm {
+//   display: -webkit-box;
+//   display: -moz-box;
+//   display: -ms-flexbox;
+//   display: -webkit-flex;
+//   display: flex;
+//   flex-wrap: wrap;
+// }
+
+// form {
+//   fieldset:first-child {
+//     margin-top: 15px;
+//   }
+
+//   fieldset {
+//     border-width: 0px;
+//     margin-bottom: 30px;
+
+//     legend {
+//       color: $azulPrimario;
+//       font-size: 14px;
+//       font-weight: bold;
+//     }
+
+//     article {
+//       @include flexParaForm;
+//       section {
+//         @include flexParaForm;
+
+//         .input {
+//           align-self: flex-end;
+//           margin-bottom: 8px;
+//           margin-left: 3px;
+//           margin-right: 3px;
+//         }
+
+//         ejs-textbox,
+//         ejs-dropdownlis,
+//         ejs-datepicker,
+//         ejs-dropdownlist,
+//         ejs-maskedtextbox {
+//           margin: 4px;
+//         }
+
+//         ejs-dropdownlis,
+//         ejs-datepicker,
+//         ejs-dropdownlist {
+//           align-self: flex-end;
+//         }
+//       }
+//     }
+//   }
+// }
+// -------------------------------------------------
+
+// Site para construção da tipografia.
+// https://www.cssfontstack.com/Open-Sans

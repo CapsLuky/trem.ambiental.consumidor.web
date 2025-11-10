@@ -1,0 +1,32 @@
+<nz-layout style="height: 100%;">
+  <nz-header>
+    <component-menu-superior
+      [menuLateralFechadoInput]="menuLateralFechado"
+      (menuLateralAbertoClick)="onAbrirFecharMenu()">
+    </component-menu-superior>
+  </nz-header>
+
+  <nz-layout>
+    <nz-sider [nzTheme]="'light'"
+              style="background:#fff; overflow: auto;"
+              [nzReverseArrow]="'false'"
+              nzCollapsible
+              [(nzCollapsed)]="menuLateralFechado"
+              [nzTrigger]="null"
+              [nzCollapsedWidth]="0">
+      <component-menu-lateral></component-menu-lateral>
+    </nz-sider>
+
+    <nz-layout>
+
+      <!-- <ui-element-cabecalho></ui-element-cabecalho> -->
+
+      <nz-content>
+
+          <router-outlet></router-outlet>
+
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
+
+</nz-layout>

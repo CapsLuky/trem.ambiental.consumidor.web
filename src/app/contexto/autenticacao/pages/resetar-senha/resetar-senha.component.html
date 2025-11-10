@@ -1,0 +1,83 @@
+<nz-spin [nzSpinning]="bloquearTela" [nzDelay]="200" [nzSize]="'large'" [nzTip]="'Validando link...'">
+  <div class="main">
+
+    <header align="center">Redefinir senha</header>
+
+    <ng-container *ngIf="!emailValidado?.length">
+      <span class="error">{{mensagemErroLinkInvalido}}</span>
+
+      <!-- <button
+          nz-button
+          class="login-form-button"
+          [nzType]="'primary'"
+          type="button"
+          nzSize="large"
+          [routerLink]="['/login']">VOLTAR
+      </button> -->
+    </ng-container>
+
+    <ng-container *ngIf="emailValidado?.length && !emailAlteradoComSucesso">
+      <form #resetarSenhaForm="ngForm" [nzLayout]="'vertical'" nz-form >
+
+        <nz-form-item>
+          <nz-form-label >Nova senha</nz-form-label>
+          <nz-form-control nzErrorTip="Digite a senha nova" nzHasFeedback>
+            <nz-input-group nzPrefixIcon="lock">
+              <input
+                nz-input
+                name="novaSenha"
+                #senha="ngModel"
+                type="password"
+                placeholder="Nova senha"
+                [(ngModel)]="resetarSenhaModel.novaSenha"
+                required
+                pattern="[\s\S]{4,}" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label >Repetir senha</nz-form-label>
+          <nz-form-control [nzErrorTip]="alertaConfirmarSenha" nzHasFeedback>
+            <nz-input-group nzPrefixIcon="lock">
+              <input
+                nz-input
+                name="confirmarNovaSenha"
+                #senha="ngModel"
+                type="password"
+                placeholder="Repetir a senha"
+                [(ngModel)]="resetarSenhaModel.confirmarNovaSenha"
+                required
+                pattern="[\s\S]{4,}" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control>
+
+            <button
+              nz-button
+              class="login-form-button"
+              [nzType]="'primary'"
+              type="button"
+              nzSize="large"
+              [nzLoading]="processando"
+              [disabled]="loginFormInvalido && resetarSenhaForm.invalid"
+              (click)="onClickTrocarSenha()">TROCAR SENHA
+            </button>
+
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </ng-container>
+
+    <ng-container *ngIf="emailAlteradoComSucesso === 'true'">
+      <span class="sucesso">Sua senha foi alterada com sucesso</span>
+    </ng-container>
+
+    <ng-template *ngIf="emailAlteradoComSucesso === 'false'">
+      <span class="erro">Erro ao redefinir senha</span>
+    </ng-template>
+  </div>
+</nz-spin>

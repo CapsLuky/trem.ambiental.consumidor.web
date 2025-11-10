@@ -1,0 +1,83 @@
+<div class="main">
+
+  <header align="center">Trocar senha</header>
+  <span class="mensagemErro">{{mensagemError}}</span>
+  <span class="mensagemSucesso">{{mensagemSucesso}}</span>
+
+  <form #trocarSenhaForm="ngForm" [nzLayout]="'vertical'" nz-form >
+
+    <nz-form-item>
+      <nz-form-label >Senha atual</nz-form-label>
+      <nz-form-control nzErrorTip="Digite a senha atual" nzHasFeedback>
+        <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate1">
+          <input nz-input
+                name="password"
+                #senha="ngModel"
+                [type]="passwordVisible1 ? 'text' : 'password'"
+                placeholder="Senha atual"
+                [(ngModel)]="senhaAtual"
+                required />
+        </nz-input-group>
+        <ng-template #suffixTemplate1>
+          <i nz-icon [nzType]="passwordVisible1 ? 'eye-invisible' : 'eye'" (click)="passwordVisible1 = !passwordVisible1"></i>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label >Nova senha</nz-form-label>
+      <nz-form-control nzErrorTip="Digite a senha nova" nzHasFeedback>
+        <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate2">
+          <input nz-input
+                name="novaSenha"
+                #senha="ngModel"
+                [type]="passwordVisible2 ? 'text' : 'password'"
+                placeholder="Nova senha"
+                [(ngModel)]="novaSenha"
+                required
+                pattern="[\s\S]{4,}" />
+        </nz-input-group>
+        <ng-template #suffixTemplate2>
+          <i nz-icon [nzType]="passwordVisible2 ? 'eye-invisible' : 'eye'" (click)="passwordVisible2 = !passwordVisible2"></i>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label >Repetir senha</nz-form-label>
+      <nz-form-control [nzErrorTip]="alertaConfirmarSenha" nzHasFeedback>
+        <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate3">
+          <input nz-input
+                name="confirmarNovaSenha"
+                #senha="ngModel"
+                [type]="passwordVisible3 ? 'text' : 'password'"
+                placeholder="Repetir a senha"
+                [(ngModel)]="confirmarNovaSenha"
+                required
+                pattern="[\s\S]{4,}" />
+        </nz-input-group>
+        <ng-template #suffixTemplate3>
+          <i nz-icon [nzType]="passwordVisible3 ? 'eye-invisible' : 'eye'" (click)="passwordVisible3 = !passwordVisible3"></i>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control>
+
+        <button nz-button
+                class="login-form-button"
+                [nzType]="'primary'"
+                type="button"
+                nzSize="large"
+                [nzLoading]="processando"
+                [disabled]="loginFormInvalido && trocarSenhaForm.invalid"
+                (click)="onClickTrocarSenha(trocarSenhaForm)">{{btnTexto}}
+        </button>
+        <a class="login-form-forgot" (click)="onVoltarParaTelaAnterior()">Voltar para tela anterior</a>
+
+
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

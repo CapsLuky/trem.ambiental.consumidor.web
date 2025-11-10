@@ -1,0 +1,49 @@
+@import "cores.scss";
+
+.main {
+  background-color: #FFFFFF;
+  max-width: 400px;
+  height: 450px;
+  margin: 7em auto;
+  border-radius: 7px;
+  border-style: solid;
+  border-color: $cinzaSecundario;
+  border-width: 1px;
+  //box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+
+  header {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color: $cinzaSecundario;
+    font-weight: bold;
+    font-size: 23px;
+  }
+
+  span{
+    margin:15px;
+  }
+  .mensagemErro{
+    color: $erro;
+    font-weight: bold;
+  }
+  .mensagemSucesso{
+    color: $azulPrimario;
+  }
+
+  form {
+    margin: 15px;
+
+    a{
+      margin-bottom: 7px;;
+    }
+
+    button {
+      margin-bottom: 10px;
+      width: 100%;
+    }
+
+    .login-form-forgot {
+      float: left;
+    }
+  }
+}

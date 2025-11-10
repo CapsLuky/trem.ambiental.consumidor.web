@@ -1,0 +1,49 @@
+@import "cores.scss";
+
+section {
+  max-width: 550px;
+  margin: 0 auto;
+  margin-top: 20px;
+
+  .steps-content {
+    margin-top: 16px;
+    border: 1px dashed #e9e9e9;
+    border-radius: 6px;
+    background-color: #fafafa;
+    height: 300px;
+    padding-top: 10px;
+
+    .boas-vindas {
+      text-align: center;
+      img {
+        width: 70%;
+        height: auto;
+      }
+
+      p {
+        margin: 20px;
+        font-size: 17px;
+      }
+    }
+
+    .titulo-conferir {
+      text-align: center;
+      margin-bottom: 15px;
+      color: $cinzaPrimario;
+      font-size: 17px;
+    }
+
+    form {
+      margin: 15px;
+    }
+  }
+
+  .steps-action {
+    margin-top: 15px;
+
+    button {
+      margin-right: 8px;
+    }
+  }
+}
+

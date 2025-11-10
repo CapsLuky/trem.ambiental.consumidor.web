@@ -1,0 +1,14 @@
+section{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:flex-start;
+
+  component-card-home-saldo {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  component-card-saldo{
+    width: 90%;
+  }
+}

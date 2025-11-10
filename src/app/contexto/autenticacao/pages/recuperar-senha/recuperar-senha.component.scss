@@ -1,0 +1,48 @@
+@import "cores.scss";
+
+.main {
+  background-color: #FFFFFF;
+  max-width: 400px;
+  height: 400px;
+  margin: 7em auto;
+  border-radius: 5px;
+  border-width: 1px;
+  border-color: $cinzaSecundario;
+  border-style: solid;
+}
+
+header {
+  padding-top: 40px;
+  padding-bottom: 25px;
+  color: $cinzaSecundario;
+  font-weight: bold;
+  font-size: 23px;
+}
+
+form {
+  margin: 15px;
+  height: 270px;
+
+  nz-form-item{
+    margin: 15px;
+    font-size: 16px;
+  }
+
+  .erro {
+    color: $erro;
+  }
+  .sucesso {
+    color: $azulPrimario;
+  }
+}
+
+.login-form-forgot {
+  float: left;
+}
+
+button {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+

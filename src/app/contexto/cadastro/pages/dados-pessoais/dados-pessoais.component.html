@@ -1,0 +1,216 @@
+<nz-spin [nzSpinning]="bloquearTela" [nzDelay]="200" [nzSize]="'large'" [nzTip]="'Aguarde...'">
+  <section>
+
+    <nz-steps [nzCurrent]="passoAtual">
+      <ng-container *ngIf="passoAtual > -1">
+        <nz-step [nzTitle]="titleDadosPessoais"></nz-step>
+        <nz-step [nzTitle]="titleDetalhe"></nz-step>
+        <nz-step [nzTitle]="titleEndereco"></nz-step>
+        <nz-step [nzTitle]="titleConferir"></nz-step >
+      </ng-container>
+    </nz-steps>
+
+    <div class="steps-content">
+
+      <div class="boas-vindas" *ngIf="passoAtual === -1">
+
+        <img max-width="200px" src="../../../../../assets/img/primeiro-cadastro.svg">
+
+        <p>
+          Olá, como é sua primeira vez aqui
+          vamos concluir seu cadastro,
+          é rapidinho
+        </p>
+      </div>
+
+      <form nz-form #cadastroForm="ngForm" [nzLayout]="'vertical'">
+
+        <div *ngIf="passoAtual == 0">
+          <nz-form-item>
+            <nz-form-label>Nome completo</nz-form-label>
+            <nz-form-control nzHasFeedback nzErrorTip="O nome é obrigatório">
+              <input nz-input
+                    placeholder="Escreva seu nome"
+                    #nome="ngModel"
+                    name="nome"
+                    [(ngModel)]="usuario.nome"
+                    required />
+            </nz-form-control>
+          </nz-form-item>
+            <nz-form-item>
+              <nz-form-label>E-mail</nz-form-label>
+              <nz-form-control nzHasFeedback nzErrorTip="O Email é obrigatório">
+                <nz-input-group>
+                  <input type="email"
+                        email
+                        name="email"
+                        required
+                        #email="ngModel"
+                        [(ngModel)]="usuario.email"
+                        nz-input
+                        placeholder="email@exemplo.com" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+        </div>
+
+        <div *ngIf="passoAtual == 1">
+          <nz-form-item>
+            <nz-form-label>Apelido</nz-form-label>
+            <nz-form-control nzHasFeedback nzErrorTip="O apelido é obrigatório">
+              <input nz-input
+                    placeholder="Escreva seu apelido ou repita seu nome"
+                    #apelido="ngModel"
+                    name="apelido"
+                    [(ngModel)]="usuario.apelido"
+                    required />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label>Idade</nz-form-label>
+            <nz-form-control [nzValidateStatus]="idadeValida" nzHasFeedback nzErrorTip="A idade é obrigatório">
+              <nz-input-number
+                    (ngModelChange)="onIdadeSelecionada()"
+                    [nzPlaceHolder]="'Informe sua idade'"
+                    #idade="ngModel"
+                    name="idade"
+                    [nzMin]="6" [nzMax]="99" [nzStep]="1"
+                    [(ngModel)]="usuario.idade"
+                    >
+              </nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label>Gênero</nz-form-label>
+            <nz-form-control [nzValidateStatus]="generoValido" nzHasFeedback nzErrorTip="O gênero é obrigatório">
+              <nz-select
+                (ngModelChange)="onGeneroSelecionado($event)"
+                nzShowSearch
+                nzPlaceHolder="Selecione seu gênero"
+                #idGenero="ngModel"
+                name="idGenero"
+                [(ngModel)]="usuario.idGenero">
+                <nz-option *ngFor="let item of generoList" [nzValue]="item.id" [nzLabel]="item.genero"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div *ngIf="passoAtual == 2">
+          <nz-form-item>
+            <nz-form-label>CEP</nz-form-label>
+            <nz-form-control nzHasFeedback nzErrorTip="O CEP é obrigatório">
+              <input nz-input
+                    mask="00000-000"
+                    placeholder="Escreva o CEP"
+                    #cep="ngModel"
+                    name="cep"
+                    [(ngModel)]="endereco.cep"
+                    required />
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label>Condomínio</nz-form-label>
+            <nz-form-control [nzValidateStatus]="condominioValido" nzHasFeedback nzErrorTip="O condomínio é obrigatório">
+              <input nz-input
+                placeholder="Escreva seu condomínio"
+                #condominio="ngModel"
+                name="condominio"
+                [(ngModel)]="endereco.condominio"
+                required />
+              <!-- <nz-select
+                (ngModelChange)="onCondominioSelecionado()"
+                nzShowSearch
+                nzPlaceHolder="Selecione o condomínio"
+                #condominio="ngModel"
+                name="condominio"
+                [(ngModel)]="endereco.condominio">
+
+                <nz-option nzLabel="Condominio 1" nzValue="1"></nz-option>
+              </nz-select> -->
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <h3 *ngIf="passoAtual == 3" class="titulo-conferir">Vamos conferir</h3>
+        <div *ngIf="passoAtual == 3" style="display: flex; justify-content: space-around;">
+          <div>
+            <nz-form-item>
+              <nz-form-label>Nome</nz-form-label>
+              <nz-form-control>
+                <p><strong>{{usuario.nome}}</strong></p>
+              </nz-form-control>
+            </nz-form-item>
+
+            <div style="display: flex; align-items: center;">
+              <nz-form-item style="margin-right: 15px;">
+                <nz-form-label>Apelido</nz-form-label>
+                <nz-form-control>
+                  <p><strong>{{usuario.apelido}}</strong></p>
+                </nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item>
+                <nz-form-label>Idade</nz-form-label>
+                <nz-form-control>
+                  <p><strong>{{usuario.idade}}</strong></p>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+
+            <nz-form-item>
+              <nz-form-label>Email</nz-form-label>
+              <nz-form-control>
+                <p><strong>{{usuario.email}}</strong></p>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <div>
+            <nz-form-item>
+              <nz-form-label>Gênero</nz-form-label>
+              <nz-form-control>
+                <p><strong>{{usuario.genero}}</strong></p>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-label>CEP</nz-form-label>
+              <nz-form-control>
+                <p><strong>{{endereco.cep}}</strong></p>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-label>Condomínio</nz-form-label>
+              <nz-form-control>
+                <p><strong>{{endereco.condominio}}</strong></p>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+        </div>
+
+      </form>
+
+
+    </div>
+
+    <div class="steps-action">
+      <button nz-button nzType="default" (click)="onBtnVoltar()" *ngIf="passoAtual != -1" [disabled]="passoAtual <= 0">
+        <span>Voltar</span>
+      </button>
+
+      <button nz-button nzType="default" (click)="onBtnProximo()" *ngIf="passoAtual < 3">
+        <span>Próximo</span>
+      </button>
+
+      <button nz-button nzType="primary" (click)="onBtnConfirmar()" *ngIf="passoAtual === 3" [nzLoading]="processando">
+        <span>Confirmar</span>
+      </button>
+    </div>
+
+  </section>
+</nz-spin>

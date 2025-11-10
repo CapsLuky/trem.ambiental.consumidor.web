@@ -1,0 +1,54 @@
+<section>
+  <article>
+    <nz-card >
+      <span>Meus pedidos</span>
+    </nz-card>
+  </article>
+
+  <article>
+    <ng-container *ngFor="let pedido of pedidos">
+      <nz-card [nzTitle]='pedido.pedidoStatusNome'
+               [nzLoading]="false"
+               [nzBorderless]="false"
+               [nzHoverable]="false"
+               [nzBodyStyle]="{'padding': '5px 15px 5px 15px'}">
+
+        <div class="linha">
+          <div>
+            <span style="margin-right: 10px;">Código do pedido</span>
+            <span><strong>{{pedido.idPedido}}</strong></span>
+          </div>
+        </div>
+
+        <div class="linha">
+          <div>
+            <span style="margin-right: 10px;">Pedido em:</span>
+            <span style="margin-right: 20px;"><strong>{{pedido.dataPedido | date:'dd/MM/yyyy'}} </strong></span>
+          </div>
+          <div>
+            <span style="margin-right: 10px;">Valido até:</span>
+            <span><strong>{{pedido.validade | date:'dd/MM/yyyy'}}</strong></span>
+          </div>
+        </div>
+
+        <div class="linha">
+          <span>Itens do pedido:</span>
+        </div>
+
+        <ng-container *ngFor="let item of pedido.items">
+          <aside>
+            <span style="margin-right: 10px;">{{item.produtoNome}}</span>
+            <span style="margin-right: 10px;">Quantidade</span>
+            <span><strong>{{item.quantidade}}</strong></span>
+          </aside>
+        </ng-container>
+
+        <div class="linha">
+          <span style="margin-right: 10px;">Valor total</span>
+          <span style="margin-right: 20px; margin-bottom: 15px;"><strong>{{pedido.valorTotal}}</strong></span>
+        </div>
+      </nz-card>
+    </ng-container>
+
+  </article>
+</section>

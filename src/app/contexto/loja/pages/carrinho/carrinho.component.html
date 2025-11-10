@@ -1,0 +1,110 @@
+<section *ngIf="carrinho !== null">
+  <article>
+    <component-card-saldo></component-card-saldo>
+  </article>
+
+  <article>
+    <nz-spin class="cardHeader" nzTip="Buscando carrinho" [nzSpinning]="onBuscarCarrinhoLoad">
+      <nz-card >
+        <span>Total do pedido:</span>
+        <span><strong>{{carrinho.valorTotal}}</strong></span>
+        <button nz-button nzType="primary" [nzLoading]="onBtnFazerPedidoLoad" (click)="onBtnFazerPedido()">Fazer pedido</button>
+      </nz-card>
+    </nz-spin>
+  </article>
+
+  <article >
+    <ng-container *ngFor="let item of carrinho.items">
+          <nz-card
+            [nzActions]="[inputQtd, btnExcluir]"
+            onInputNumberAtualizarItem
+            [nzLoading]="false"
+            [nzBorderless]="false"
+            [nzHoverable]="false"
+            [nzBodyStyle]="{'padding': '5px 15px 5px 15px'}"
+          >
+            <div>
+                <img
+                  nz-image
+                  [nzSrc]="item.imagem"
+                  [nzPlaceholder]="placeholder"
+                  [nzFallback]="fallback"
+                />
+              <aside>
+
+                <h5 nz-typography>{{item.produtoNome}}</h5>
+                <!-- <span>{{item.descricao}}</span> -->
+
+                <div class="rodape">
+                  <div><strong>{{item.valorTotal}}</strong> &nbsp; pontos</div>
+                  <div></div>
+                </div>
+              </aside>
+            </div>
+          </nz-card>
+          <ng-template #inputQtd>
+            <nz-input-number class="inputQtd"
+                             [(ngModel)]="item.quantidade"
+                             [nzSize]="'large'"
+                             [nzMin]="1"
+                             [nzStep]="1"
+                             (ngModelChange)="onInputNumberAtualizarItem($event,item.idProduto)">
+              </nz-input-number>
+          </ng-template>
+          <ng-template #btnExcluir>
+            <a nz-button
+               nzType="text"
+               nzDanger
+               [nzSize]="'large'"
+               [nzLoading]="onBtnRemoverLoad"
+               (click)="onBtnRemoverItem(item.idProduto)">
+                  <i nz-icon nzType="delete" nzTheme="outline"></i>
+                  Remover
+            </a>
+          </ng-template>
+
+    </ng-container>
+  </article>
+</section>
+
+
+<section  *ngIf="carrinho === null">
+  <article>
+    <nz-card >
+      <span style="margin-right: 15px;">Total do pedido:</span>
+      <span style="margin-right: 20px;"><strong>0</strong></span>
+      <button nz-button nzType="primary" disabled>Fazer pedido</button>
+    </nz-card>
+  </article>
+
+  <article>
+    <nz-card
+      style="height: 186; width: 450px;"
+      [nzActions]="[inputQtd, btnExcluir]"onInputNumberAtualizarItem
+      [nzBodyStyle]="{'padding': '5px 15px 5px 15px'}"
+      [nzCover]="coverTemplate">
+  </nz-card>
+
+  <ng-template #inputQtd>
+    <nz-input-number class="inputQtd"
+                     [nzSize]="'large'"
+                     nzDisabled="true"
+                     >
+      </nz-input-number>
+  </ng-template>
+  <ng-template #btnExcluir>
+    <a nz-button
+       nzType="text"
+       disabled="true"
+       nzDanger
+       [nzSize]="'large'">
+          <i nz-icon nzType="delete" nzTheme="outline"></i>
+          Remover
+    </a>
+  </ng-template>
+  <ng-template #coverTemplate>
+    <img src="../../../../../assets/img/carrinho_vazio.svg"/>
+  </ng-template>
+
+  </article>
+</section>

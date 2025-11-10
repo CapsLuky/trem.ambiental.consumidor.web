@@ -1,0 +1,23 @@
+nz-layout {
+  nz-header {
+    background:#fff;
+    height: 50px;
+    padding-left: 20px;
+
+    ui-element-menu-superior {
+        width: -webkit-fill-available;
+    }
+  }
+  nz-layout {
+    nz-layout {
+      width: 100%;
+      nz-content {
+        height: 100%;
+        overflow: auto;
+        margin-top: 15px;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+    }
+  }
+}

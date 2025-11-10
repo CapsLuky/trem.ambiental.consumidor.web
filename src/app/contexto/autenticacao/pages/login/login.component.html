@@ -1,0 +1,73 @@
+<div class="main">
+
+  <figure>
+    <img title="Tren Ambiental" src="../../../../../assets/img/TrenLogo02.jpg" width="200px" >
+  </figure>
+
+  <!-- <header align="center" >Faça o login</header> -->
+
+  <i antIcon type="ant-cloud" theme="outline"></i>
+
+  <form #loginForm="ngForm" [nzLayout]="'vertical'" nz-form (keyup.enter)="onKeyupLogarComEnter()">
+
+
+    <nz-form-item>
+      <nz-form-label >Informe seu e-mail</nz-form-label>
+      <nz-form-control nzErrorTip="Entre com seu e-mail" nzHasFeedback>
+        <nz-input-group nzPrefixIcon="mail">
+          <input nz-input
+            id="login-inputTextNome"
+            required
+            name="email"
+            #login="ngModel"
+            email
+            placeholder="exemplo@email.com"
+            [(ngModel)]="usuario.email" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label >Senha</nz-form-label>
+      <nz-form-control nzErrorTip="Digite sua senha" nzHasFeedback>
+        <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
+          <input nz-input
+            id="login-inputTextSenha"
+            name="senha"
+            #senha="ngModel"
+            [type]="passwordVisible ? 'text' : 'password'"
+            [(ngModel)]="usuario.senha"
+            placeholder="Digite sua senha"
+            required />
+        </nz-input-group>
+        <ng-template #suffixTemplate>
+          <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button
+        id="login-buttonLogar"
+        class="login-form-button"
+        [nzType]="'primary'"
+        type="button"
+        nzSize="large"
+        [nzLoading]="processando"
+        [disabled]="loginFormInvalido && loginForm.invalid"
+        (click)="onClickLogar()">ENTRAR
+      </button>
+
+      <span>{{mensagemError}}</span>
+
+      <!-- <a>Cadastre-se agora!</a> -->
+      <a class="login-form-forgot" (click)="onClickIrParaEsqueceuSenha()">Esqueci a senha / Primeiro acesso</a>
+        <!-- <label nz-checkbox >
+          <span>Lembrar</span>
+        </label> -->
+
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
